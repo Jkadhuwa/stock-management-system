@@ -1,0 +1,46 @@
+{
+  "name": "uninet_stock_management_system",
+  "version": "1.0.0",
+  "description": "Bar Stock Management System to control Evergreen Country Club stock.",
+  "main": "app.js",
+  "repository": "https://github.com/Jkadhuwa/stock-management-system",
+  "author": "Jkadhuwa",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon --exec babel-node ./src/app.js",
+    "lint": "eslint . --ext .js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.2",
+    "pg": "^8.4.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/register": "^7.12.1",
+    "@babel/runtime": "^7.12.1",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.5"
+  },
+  "lint-staged": {
+    "src/**/*.(js)": "yarn lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

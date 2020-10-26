@@ -2,38 +2,52 @@
   "name": "uninet_stock_management_system",
   "version": "1.0.0",
   "description": "Bar Stock Management System to control Evergreen Country Club stock.",
-  "main": "app.js",
+  "main": "index.js",
   "repository": "https://github.com/Jkadhuwa/stock-management-system",
-  "author": "Jkadhuwa",
+  "author": "Jkadhuwa <justinemsinda@gmail.com>",
   "license": "MIT",
-  "private": false,
   "scripts": {
-    "dev": "nodemon --exec babel-node ./src/app.js",
-    "lint": "eslint . --ext .js"
+    "dev": "nodemon --exec babel-node src/index.js",
+    "lint": "eslint . --ext .js",
+    "pretest": "NODE_ENV=test yarn migrate:undo && NODE_ENV=test yarn migrate yarn seed:undo && NODE_ENV=test yarn seed-test ",
+    "test": "jest --coverage --config ./jest.config.json --detectOpenHandles --forceExit",
+    "migrate": "sequelize db:migrate",
+    "migrate:undo": "sequelize db:migrate:undo:all",
+    "seed": "sequelize db:seed:all",
+    "seed-test": "sequelize db:seed --seed 20200607085225-deafaul-users.js",
+    "seed:undo": "sequelize db:seed:undo:all"
   },
   "dependencies": {
-    "cors": "^2.8.5",
+    "babel-polyfill": "^6.26.0",
+    "bcrypt": "^4.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.2",
-    "pg": "^8.4.1",
+    "joi": "^17.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.4",
+    "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.3.5"
+    "sequelize": "^5.21.11",
+    "sequelize-cli": "^5.5.1",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/node": "^7.12.1",
+    "@babel/core": "^7.10.1",
+    "@babel/node": "^7.10.1",
     "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/register": "^7.12.1",
-    "@babel/runtime": "^7.12.1",
-    "babel-loader": "^8.1.0",
-    "eslint": "^7.11.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "nodemon": "^2.0.5"
+    "@babel/preset-env": "^7.10.1",
+    "babel-jest": "^26.0.1",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.7",
+    "prettier": "^2.0.5",
+    "supertest": "^4.0.2"
   },
   "lint-staged": {
     "src/**/*.(js)": "yarn lint"
@@ -42,5 +56,10 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "reporter": [
+    "clover",
+    "html",
+    "text"
+  ]
 }

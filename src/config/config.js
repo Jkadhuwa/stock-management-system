@@ -1,27 +1,36 @@
+import 'babel-polyfill';
 import 'dotenv/config';
 
-export default
-{
+
+const {
+  DB_NAME_PROD, DB_NAME_DEV, DB_USER, DB_PASS, DB_HOST, DB_PORT,
+} = process.env;
+module.exports = {
+
   development: {
-    database: 'evergreenDB_dev',
-    username: 'postgres',
-    password: 'Uninet41234',
-    host: '127.0.0.1',
+    database: DB_NAME_DEV,
+    username: DB_USER,
+    password: DB_PASS,
+    host: DB_HOST,
+    port: DB_PORT,
     dialect: 'postgres',
-    logging: false
+    logging: false,
   },
   test: {
-    database: 'evergreenDB_test',
-    username: 'steven',
-    password: null,
-    host: '127.0.0.1',
-    dialect: 'postgres'
+    database: 'evergreen_test',
+    username: 'postgres',
+    password: 'Uninet41234',
+    host: DB_HOST,
+    port: DB_PORT,
+    dialect: 'postgres',
+    logging: false,
   },
   production: {
-    database: process.env.DB_NAME,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    host: process.env.DB_HOST,
-    dialect: 'postgres'
-  }
+    database: DB_NAME_PROD,
+    username: DB_USER,
+    password: DB_PASS,
+    host: DB_HOST,
+    port: DB_PORT,
+    dialect: 'postgres',
+  },
 };

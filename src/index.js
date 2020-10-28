@@ -15,12 +15,12 @@ app.use('/api/v1', router);
 
 const PORT = process.env.PORT || 3000;
 
-db.sequelize.sync().then(() => {
+(async () => {
+  await db.sequelize.sync();
   winston.info('🚀  Database ready ');
   app.listen(PORT, () => {
     winston.info(`🚀  Server ready at ${PORT}`);
   });
-});
-
+})();
 
 export default app;

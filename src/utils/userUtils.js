@@ -8,9 +8,11 @@ export const generateToken = (user) => jwt.sign(
   {
     name: user.name,
     email: user.email,
+    role: user.role,
+    jobId: user.job_id
   },
   JWT_SECRET_KEY,
-  { expiresIn: '1d' },
+  { expiresIn: '1h' },
 );
 
 export const hashPassword = (password) => bcrypt.hash(password, 10);
